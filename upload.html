@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Room - Media Upload</title>
+    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><strong>Aether Room</strong></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="scenes.html">Scenes</a>
+            <a href="room.html">Room</a>
+            <a href="upload.html" class="active">Upload</a>
+            <a href="chat.html">Chat</a>
+        </div>
+    </nav>
+
+    <main class="upload-container">
+        <div class="upload-card">
+            
+            <!-- Phase 1: Upload Interface -->
+            <div id="upload-phase">
+                <h2>Customize Your Space</h2>
+                <p class="subtitle">Upload custom media for your room</p>
+
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <h3>Drag & Drop media here</h3>
+                    <p>or click to browse</p>
+                    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">Supports JPG, PNG, GIF, MP4, WebM</p>
+                </div>
+                <input type="file" id="file-input" accept="image/*,video/*">
+            </div>
+
+            <!-- Phase 2: Preview Interface -->
+            <div class="preview-section" id="preview-phase">
+                <h2>Preview Media</h2>
+                
+                <div class="media-container" id="media-container">
+                    <!-- Image or Video tag will be injected here via JS -->
+                </div>
+
+                <div class="file-info" id="file-info">
+                    <i class="fa-solid fa-file"></i>
+                    <span id="file-name">filename.jpg</span>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-secondary" id="btn-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="btn-apply">Apply to Room</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Status Toast for feedback -->
+    <div class="status-toast" id="toast"></div>
+
+    <script src="upload.js"></script>
+</body>
+</html>

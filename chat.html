@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Room - Global Lounge</title>
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><strong>Aether Room</strong></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="scenes.html">Scenes</a>
+            <a href="room.html">Room</a>
+            <a href="upload.html">Upload</a>
+            <a href="chat.html" class="active">Chat</a>
+        </div>
+    </nav>
+
+    <main class="chat-container">
+        <div class="chat-interface">
+            
+            <header class="chat-header">
+                <i class="fa-solid fa-mug-hot"></i>
+                <h2>Global Lounge</h2>
+                <span id="user-count">4 Users Online</span>
+            </header>
+
+            <div class="chat-history" id="chat-history">
+                <!-- Messages will be injected here via JavaScript -->
+            </div>
+
+            <div class="chat-input-area">
+                <div class="input-row">
+                    <input type="text" id="username-input" placeholder="Name" maxlength="15">
+                    <input type="text" id="message-input" placeholder="Share a quiet thought..." autocomplete="off">
+                    <button class="btn-send" id="btn-send">
+                        <span>Send</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Room - Scene Selection</title>
+    <link rel="stylesheet" href="scenes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><strong>Aether Room</strong></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="scenes.html" class="active">Scenes</a>
+            <a href="room.html">Room</a>
+            <a href="upload.html">Upload</a>
+            <a href="chat.html">Chat</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Choose Your Sanctuary</h1>
+        <p>Select an environment to set the perfect mood.</p>
+    </header>
+
+    <main class="scenes-container">
+        
+        <!-- Anime Scene -->
+        <article class="scene-card" data-scene="anime">
+            <div class="scene-image-placeholder placeholder-anime">
+                <i class="fa-solid fa-wind"></i>
+            </div>
+            <div class="scene-content">
+                <h3>Anime Scene</h3>
+                <p>A nostalgic, pastel-colored room with gentle wind blowing through curtains. Lo-fi study girl aesthetic.</p>
+                <button class="btn-select">Select Scene</button>
+            </div>
+        </article>
+
+        <!-- Drift Scene -->
+        <article class="scene-card" data-scene="drift">
+            <div class="scene-image-placeholder placeholder-drift">
+                <i class="fa-brands fa-space-awesome"></i>
+            </div>
+            <div class="scene-content">
+                <h3>Drift Scene</h3>
+                <p>A minimalist, cloud-drifting space environment. Ethereal visuals with slow, synth-heavy ambient audio.</p>
+                <button class="btn-select">Select Scene</button>
+            </div>
+        </article>
+
+        <!-- Nature Scene -->
+        <article class="scene-card" data-scene="nature">
+            <div class="scene-image-placeholder placeholder-nature">
+                <i class="fa-solid fa-tree"></i>
+            </div>
+            <div class="scene-content">
+                <h3>Nature Scene</h3>
+                <p>A lush, green forest setting with dappled sunlight. Features sounds of birds, rustling leaves, and a flowing stream.</p>
+                <button class="btn-select">Select Scene</button>
+            </div>
+        </article>
+
+        <!-- Night City Scene -->
+        <article class="scene-card" data-scene="city">
+            <div class="scene-image-placeholder placeholder-city">
+                <i class="fa-solid fa-city"></i>
+            </div>
+            <div class="scene-content">
+                <h3>Night City Scene</h3>
+                <p>A high-rise view overlooking a neon-lit cyberpunk skyline. Rain hitting the window with soft background jazz.</p>
+                <button class="btn-select">Select Scene</button>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Status Toast for feedback -->
+    <div class="status-toast" id="toast"></div>
+
+    <script src="scenes.js"></script>
+</body>
+</html>
