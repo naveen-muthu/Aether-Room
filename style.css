@@ -1,218 +1,229 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Cinzel', serif;
-    background: #000;
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:'Cinzel', serif;
+    background:#000;
 }
 
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* Background */
 
-    background: url("corridor.jpeg") center center/cover no-repeat;
+.background{
+    position:fixed;
+    top:0;
+    left:0;
 
-    animation: zoom 20s ease-in-out infinite alternate;
+    width:100%;
+    height:100%;
 
-    z-index: -3;
+    background:url("corridor.jpeg") center center/cover no-repeat;
+
+    transform:scale(1.03);
+
+    z-index:-3;
 }
 
-.overlay {
-    position: fixed;
-    inset: 0;
+/* Dark Overlay */
 
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.75)
+.overlay{
+    position:fixed;
+    inset:0;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.75)
     );
 
-    z-index: -2;
+    z-index:-2;
 }
 
-.overlay::after {
-    content: "";
+/* Vignette */
 
-    position: absolute;
-    inset: 0;
+.overlay::after{
+    content:"";
 
-    background: radial-gradient(
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
         circle,
-        transparent 30%,
-        rgba(0, 0, 0, 0.85) 100%
+        transparent 35%,
+        rgba(0,0,0,0.85) 100%
     );
 }
 
-.hero {
-    height: 100vh;
+/* Hero */
 
-    display: flex;
-    flex-direction: column;
+.hero{
+    height:100vh;
 
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
 
-    text-align: center;
+    justify-content:center;
+    align-items:center;
 
-    padding: 20px;
+    text-align:center;
 
-    animation: fadeIn 2s ease;
+    padding:20px;
 }
 
-.title {
-    color: white;
+/* Main Title */
 
-    font-size: 7rem;
+.title{
+    color:#fff;
 
-    font-weight: 800;
+    font-size:7rem;
 
-    letter-spacing: 12px;
+    font-weight:800;
 
-    text-transform: uppercase;
+    letter-spacing:14px;
+
+    text-transform:uppercase;
 
     text-shadow:
-        0 0 10px rgba(255, 180, 0, 0.8),
-        0 0 25px rgba(255, 180, 0, 0.7),
-        0 0 60px rgba(255, 120, 0, 0.6);
+    0 0 15px rgba(255,179,0,0.9),
+    0 0 30px rgba(255,179,0,0.8),
+    0 0 60px rgba(255,122,0,0.7);
 
-    animation: floatTitle 5s ease-in-out infinite;
+    animation:floatTitle 6s ease-in-out infinite;
 }
 
-.subtitle {
-    margin-top: 15px;
+/* Subtitle */
 
-    color: rgba(255, 255, 255, 0.85);
+.subtitle{
+    margin-top:15px;
 
-    letter-spacing: 5px;
+    color:rgba(255,255,255,0.85);
 
-    font-size: 1rem;
+    letter-spacing:6px;
 
-    text-transform: uppercase;
+    font-size:1rem;
 
-    text-shadow: 0 0 10px rgba(255, 180, 0, 0.4);
+    text-transform:uppercase;
+
+    text-shadow:
+    0 0 10px rgba(255,179,0,0.4);
 }
 
-.enter-btn {
-    margin-top: 45px;
+/* Button */
 
-    text-decoration: none;
+.enter-btn{
+    margin-top:45px;
 
-    color: white;
+    text-decoration:none;
 
-    border: 2px solid #ffb300;
+    color:#fff;
 
-    padding: 16px 50px;
+    border:2px solid #ffb300;
 
-    border-radius: 50px;
+    padding:16px 50px;
 
-    letter-spacing: 4px;
+    border-radius:50px;
 
-    font-size: 1rem;
+    font-size:1rem;
 
-    transition: 0.4s ease;
+    letter-spacing:5px;
 
-    backdrop-filter: blur(5px);
+    transition:all .4s ease;
 
-    background: rgba(0, 0, 0, 0.25);
-
-    box-shadow: 0 0 15px rgba(255, 179, 0, 0.35);
-}
-
-.enter-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-
-    background: rgba(255, 179, 0, 0.08);
+    background:rgba(0,0,0,0.25);
 
     box-shadow:
-        0 0 20px #ffb300,
-        0 0 40px #ffb300,
-        0 0 80px rgba(255, 122, 0, 0.8);
+    0 0 15px rgba(255,179,0,0.4);
 }
 
-#particles {
-    position: fixed;
-    inset: 0;
+.enter-btn:hover{
+    transform:
+    translateY(-5px)
+    scale(1.05);
 
-    pointer-events: none;
+    background:
+    rgba(255,179,0,0.08);
 
-    background-image: radial-gradient(
-        rgba(255, 179, 0, 0.5) 1px,
+    box-shadow:
+    0 0 20px #ffb300,
+    0 0 40px #ffb300,
+    0 0 80px rgba(255,122,0,0.8);
+}
+
+/* Particles */
+
+#particles{
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+    radial-gradient(
+        rgba(255,179,0,0.6) 1px,
         transparent 1px
     );
 
-    background-size: 120px 120px;
+    background-size:140px 140px;
 
-    opacity: 0.25;
+    opacity:.25;
 
-    animation: particlesMove 25s linear infinite;
+    animation:
+    particlesMove 25s linear infinite;
 }
 
-@keyframes zoom {
-    from {
-        transform: scale(1);
+/* Animations */
+
+@keyframes floatTitle{
+
+    0%{
+        transform:translateY(0px);
     }
 
-    to {
-        transform: scale(1.12);
-    }
-}
-
-@keyframes floatTitle {
-    0% {
-        transform: translateY(0);
+    50%{
+        transform:translateY(-10px);
     }
 
-    50% {
-        transform: translateY(-12px);
-    }
-
-    100% {
-        transform: translateY(0);
+    100%{
+        transform:translateY(0px);
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+@keyframes particlesMove{
+
+    from{
+        transform:translateY(0);
     }
 
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes particlesMove {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-300px);
+    to{
+        transform:translateY(-300px);
     }
 }
 
-@media (max-width: 768px) {
+/* Mobile */
 
-    .title {
-        font-size: 3rem;
-        letter-spacing: 6px;
+@media(max-width:768px){
+
+    .title{
+        font-size:3rem;
+        letter-spacing:6px;
     }
 
-    .subtitle {
-        font-size: 0.8rem;
+    .subtitle{
+        font-size:.8rem;
+        letter-spacing:3px;
     }
 
-    .enter-btn {
-        padding: 14px 35px;
+    .enter-btn{
+        padding:14px 35px;
+        font-size:.9rem;
     }
-
 }
