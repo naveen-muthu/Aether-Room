@@ -3,67 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether Room - Main Relaxation Room</title>
+    <title>Infinity Room</title>
+
     <link rel="stylesheet" href="room.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="night-mode">
-    <nav class="navbar">
-        <div class="logo"><strong>Aether Room</strong></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="scenes.html">Scenes</a>
-            <a href="upload.html">Upload</a>
-            <a href="chat.html">Chat</a>
-        </div>
-        <div class="controls">
-            <button class="btn-toggle" id="theme-toggle">
-                <i class="fa-solid fa-sun" id="theme-icon"></i> Day Mode
-            </button>
-        </div>
-    </nav>
+<body>
 
-    <main class="room-container">
-        <div class="room-walls">
-            
-            <!-- Bookshelf Area -->
-            <div class="interactive-area bookshelf-area" id="bookshelf">
-                <i class="fa-solid fa-book-open"></i>
-                <h3>Library</h3>
-                <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Saved Mixes</p>
+    <!-- Background -->
+
+    <div class="background"></div>
+    <div class="overlay"></div>
+
+    <!-- Main Dashboard -->
+
+    <div class="dashboard">
+
+        <!-- Left Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                ∞
             </div>
 
-            <!-- Window Area -->
-            <div class="interactive-area window-area" id="window">
-                <div class="weather-display" id="weather-display">
-                    <i class="fa-solid fa-cloud-moon-rain"></i> <span>Night Rain</span>
+            <a href="#" class="nav-btn active">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="scenes.html" class="nav-btn">
+                <i class="fa-solid fa-image"></i>
+            </a>
+
+            <a href="upload.html" class="nav-btn">
+                <i class="fa-solid fa-upload"></i>
+            </a>
+
+            <a href="chat.html" class="nav-btn">
+                <i class="fa-solid fa-comments"></i>
+            </a>
+
+            <a href="#" class="nav-btn">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+
+        </aside>
+
+        <!-- Center Area -->
+
+        <main class="main-content">
+
+            <div class="welcome-card">
+
+                <div>
+                    <h2>Welcome Back</h2>
+                    <h1>Infinity Room</h1>
                 </div>
+
+                <div class="clock-box">
+                    <span id="clock">00:00</span>
+                </div>
+
             </div>
 
-            <!-- Desk Area containing Radio, Lamp, Cat -->
-            <div class="desk-area">
-                <div class="radio-area" id="radio">
-                    <i class="fa-solid fa-radio"></i>
-                    <h3>Radio</h3>
-                </div>
-                
-                <div class="lamp-area" id="lamp">
-                    <i class="fa-solid fa-lightbulb"></i>
-                    <h3>Lamp</h3>
+            <!-- Main Screen -->
+
+            <section class="screen-card">
+
+                <div class="screen-overlay">
+
+                    <h1>RELAX</h1>
+
+                    <p>
+                        Escape. Focus. Breathe.
+                    </p>
+
+                    <button class="main-btn">
+                        Start Session
+                    </button>
+
                 </div>
 
-                <div class="cat-area" id="cat">
-                    <i class="fa-solid fa-cat"></i>
-                    <h3>Cat</h3>
+            </section>
+
+            <!-- Quick Cards -->
+
+            <section class="quick-grid">
+
+                <div class="quick-card">
+                    <h3>Rain Room</h3>
+                    <p>Soft rainfall ambience</p>
                 </div>
+
+                <div class="quick-card">
+                    <h3>Forest</h3>
+                    <p>Birds & nature sounds</p>
+                </div>
+
+                <div class="quick-card">
+                    <h3>Train Journey</h3>
+                    <p>Endless relaxing travel</p>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Right Controls -->
+
+        <aside class="control-panel">
+
+            <div class="control-card">
+
+                <h3>Ambient Controls</h3>
+
+                <div class="sound-item">
+                    🌧 Rain Sound
+                </div>
+
+                <div class="sound-item">
+                    ⛈ Storm Sound
+                </div>
+
+                <div class="sound-item">
+                    🔥 Fireplace
+                </div>
+
+                <div class="sound-item">
+                    🎵 LoFi Music
+                </div>
+
             </div>
 
-        </div>
-    </main>
+            <div class="control-card">
 
-    <!-- Status Toast for feedback -->
-    <div class="status-toast" id="toast">Interaction Feedback</div>
+                <h3>Room Settings</h3>
+
+                <button class="toggle-btn">
+                    🌙 Day / Night
+                </button>
+
+            </div>
+
+        </aside>
+
+    </div>
 
     <script src="room.js"></script>
+
 </body>
 </html>
