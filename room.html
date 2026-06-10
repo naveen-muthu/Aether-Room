@@ -3,155 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Room</title>
-
+    <title>Infinity Room - Dashboard</title>
     <link rel="stylesheet" href="room.css">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <!-- Background -->
+    <!-- Background Layer -->
+    <div class="background" id="main-bg"></div>
+    <div class="overlay" id="main-overlay"></div>
+    <div class="particles" id="particles"></div>
 
-    <div class="background"></div>
-    <div class="overlay"></div>
-
-    <!-- Main Dashboard -->
-
+    <!-- Main Dashboard Container -->
     <div class="dashboard">
 
         <!-- Left Sidebar -->
-
-        <aside class="sidebar">
-
+        <aside class="sidebar glass">
             <div class="logo">
-                ∞
+                <i class="fa-solid fa-infinity"></i>
             </div>
-
-            <a href="#" class="nav-btn active">
-                <i class="fa-solid fa-house"></i>
-            </a>
-
-            <a href="scenes.html" class="nav-btn">
-                <i class="fa-solid fa-image"></i>
-            </a>
-
-            <a href="upload.html" class="nav-btn">
-                <i class="fa-solid fa-upload"></i>
-            </a>
-
-            <a href="chat.html" class="nav-btn">
-                <i class="fa-solid fa-comments"></i>
-            </a>
-
-            <a href="#" class="nav-btn">
-                <i class="fa-solid fa-gear"></i>
-            </a>
-
+            <nav class="nav-menu">
+                <a href="room.html" class="nav-btn active" title="Home">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+                <a href="upload.html" class="nav-btn" title="Upload">
+                    <i class="fa-solid fa-upload"></i>
+                    <span class="nav-label">Upload</span>
+                </a>
+                <a href="chat.html" class="nav-btn" title="Chat">
+                    <i class="fa-solid fa-comments"></i>
+                    <span class="nav-label">Chat</span>
+                </a>
+                <a href="#" class="nav-btn" title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="nav-label">Settings</span>
+                </a>
+            </nav>
         </aside>
 
-        <!-- Center Area -->
-
+        <!-- Center Main Area -->
         <main class="main-content">
-
-            <div class="welcome-card">
-
-                <div>
-                    <h2>Welcome Back</h2>
-                    <h1>Infinity Room</h1>
+            
+            <!-- Top Hero Section -->
+            <section class="hero-section glass">
+                <div class="hero-content">
+                    <div class="clock-display" id="time">00:00</div>
+                    <div class="date-display">
+                        <span id="day">Day</span>, <span id="date">Date</span>
+                    </div>
+                    <p class="quote">"Focus on the journey, not the destination."</p>
                 </div>
+                <div class="ambient-glow"></div>
+            </section>
 
-                <div class="clock-box">
-                    <span id="clock">00:00</span>
+            <div class="center-row">
+                <!-- Scenes Section -->
+                <section class="scenes-section glass">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-image"></i> Environments</h2>
+                    </div>
+                    <div class="scenes-grid">
+                        <div class="scene-card active" data-scene="rain" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-cloud-rain"></i></div>
+                            <h3>Rain Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="natural" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-tree"></i></div>
+                            <h3>Natural Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="city" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-city"></i></div>
+                            <h3>Night City Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="garden" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-seedling"></i></div>
+                            <h3>Japanese Garden Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="train" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-train"></i></div>
+                            <h3>Endless Train Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="anime" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-wind"></i></div>
+                            <h3>Anime Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="drift" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-cloud"></i></div>
+                            <h3>Drift Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="car" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-car"></i></div>
+                            <h3>Car Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="bird" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-dove"></i></div>
+                            <h3>Bird Flying Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="storm" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-cloud-bolt"></i></div>
+                            <h3>Storm Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="fire" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-fire"></i></div>
+                            <h3>Fire Place Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="piano" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-music"></i></div>
+                            <h3>Piano Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="violin" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-guitar"></i></div>
+                            <h3>Violin Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="harmonic" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-compact-disc"></i></div>
+                            <h3>Harmonic Room</h3>
+                        </div>
+                        <div class="scene-card" data-scene="flute" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <h3>Flute Room</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="center-col">
+                    <!-- Ambient Controls Section -->
+                    <section class="ambient-section glass">
+                        <div class="section-header">
+                            <h2><i class="fa-solid fa-sliders"></i> Ambient Sounds</h2>
+                        </div>
+                        
+                        <audio id="audio-rain" src="https://actions.google.com/sounds/v1/weather/rain_on_roof.ogg" loop preload="none"></audio>
+                        <audio id="audio-storm" src="https://actions.google.com/sounds/v1/weather/thunderstorm.ogg" loop preload="none"></audio>
+                        <audio id="audio-fire" src="https://actions.google.com/sounds/v1/water/fireplace_with_crackle.ogg" loop preload="none"></audio>
+                        <audio id="audio-lofi" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop preload="none"></audio>
+
+                        <div class="sound-list">
+                            <div class="sound-item" data-audio="audio-rain" data-name="Rain">
+                                <div class="sound-info">
+                                    <i class="fa-solid fa-cloud-showers-heavy"></i>
+                                    <span>Rain</span>
+                                </div>
+                                <div class="sound-controls">
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                                </div>
+                            </div>
+                            <div class="sound-item" data-audio="audio-storm" data-name="Storm">
+                                <div class="sound-info">
+                                    <i class="fa-solid fa-bolt"></i>
+                                    <span>Storm</span>
+                                </div>
+                                <div class="sound-controls">
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                                </div>
+                            </div>
+                            <div class="sound-item" data-audio="audio-fire" data-name="Fireplace">
+                                <div class="sound-info">
+                                    <i class="fa-solid fa-fire"></i>
+                                    <span>Fireplace</span>
+                                </div>
+                                <div class="sound-controls">
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                                </div>
+                            </div>
+                            <div class="sound-item" data-audio="audio-lofi" data-name="LoFi">
+                                <div class="sound-info">
+                                    <i class="fa-solid fa-headphones"></i>
+                                    <span>LoFi</span>
+                                </div>
+                                <div class="sound-controls">
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Focus Section -->
+                    <section class="focus-section glass">
+                        <div class="section-header">
+                            <h2><i class="fa-solid fa-stopwatch"></i> Focus Timer</h2>
+                        </div>
+                        <div class="timer-display" id="timer-display">25:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn primary" id="timer-start"><i class="fa-solid fa-play"></i> Start</button>
+                            <button class="timer-btn" id="timer-pause"><i class="fa-solid fa-pause"></i> Pause</button>
+                            <button class="timer-btn" id="timer-reset"><i class="fa-solid fa-rotate-right"></i></button>
+                        </div>
+                    </section>
                 </div>
-
             </div>
-
-            <!-- Main Screen -->
-
-            <section class="screen-card">
-
-                <div class="screen-overlay">
-
-                    <h1>RELAX</h1>
-
-                    <p>
-                        Escape. Focus. Breathe.
-                    </p>
-
-                    <button class="main-btn">
-                        Start Session
-                    </button>
-
-                </div>
-
-            </section>
-
-            <!-- Quick Cards -->
-
-            <section class="quick-grid">
-
-                <div class="quick-card">
-                    <h3>Rain Room</h3>
-                    <p>Soft rainfall ambience</p>
-                </div>
-
-                <div class="quick-card">
-                    <h3>Forest</h3>
-                    <p>Birds & nature sounds</p>
-                </div>
-
-                <div class="quick-card">
-                    <h3>Train Journey</h3>
-                    <p>Endless relaxing travel</p>
-                </div>
-
-            </section>
 
         </main>
 
-        <!-- Right Controls -->
-
-        <aside class="control-panel">
-
-            <div class="control-card">
-
-                <h3>Ambient Controls</h3>
-
-                <div class="sound-item">
-                    🌧 Rain Sound
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <!-- User Status Card -->
+            <section class="status-card glass">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>Infinity User</h3>
+                        <p>Focus Mode: Active</p>
+                    </div>
                 </div>
-
-                <div class="sound-item">
-                    ⛈ Storm Sound
+                
+                <div class="status-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Current Scene</span>
+                        <span class="stat-value" id="stat-scene">Rain Room</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Current Sound</span>
+                        <span class="stat-value" id="stat-sound">None</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Focus Time Today</span>
+                        <span class="stat-value" id="stat-time">0m</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Sessions Completed</span>
+                        <span class="stat-value" id="stat-sessions">0</span>
+                    </div>
                 </div>
+            </section>
 
-                <div class="sound-item">
-                    🔥 Fireplace
+            <!-- Quick Actions -->
+            <section class="quick-actions glass">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-bolt"></i> Quick Actions</h2>
                 </div>
-
-                <div class="sound-item">
-                    🎵 LoFi Music
+                <div class="actions-list">
+                    <a href="upload.html" class="action-btn">
+                        <div class="action-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <div class="action-text">
+                            <h4>Upload Media</h4>
+                            <p>Custom backgrounds</p>
+                        </div>
+                    </a>
+                    <a href="chat.html" class="action-btn">
+                        <div class="action-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                        <div class="action-text">
+                            <h4>Open Chat</h4>
+                            <p>Community room</p>
+                        </div>
+                    </a>
+                    <button class="action-btn" id="theme-toggle">
+                        <div class="action-icon"><i class="fa-solid fa-moon"></i></div>
+                        <div class="action-text">
+                            <h4>Change Theme</h4>
+                            <p>Toggle day/night</p>
+                        </div>
+                    </button>
                 </div>
-
-            </div>
-
-            <div class="control-card">
-
-                <h3>Room Settings</h3>
-
-                <button class="toggle-btn">
-                    🌙 Day / Night
-                </button>
-
-            </div>
-
+            </section>
         </aside>
 
     </div>
 
     <script src="room.js"></script>
-
 </body>
 </html>
