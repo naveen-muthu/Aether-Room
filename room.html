@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Room - Dashboard</title>
+    <title>Aether Room - Dashboard</title>
     <link rel="stylesheet" href="room.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -11,6 +11,7 @@
 
     <!-- Background Layer -->
     <div class="background" id="main-bg"></div>
+    <video id="bgVideo" autoplay muted loop playsinline></video>
     <div class="overlay" id="main-overlay"></div>
     <div class="particles" id="particles"></div>
 
@@ -124,6 +125,10 @@
                             <div class="scene-icon"><i class="fa-solid fa-microphone-lines"></i></div>
                             <h3>Flute Room</h3>
                         </div>
+                         <div class="scene-card" data-scene="flute" data-bg="roombg.png">
+                            <div class="scene-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <h3>moon Room</h3>
+                        </div>
                     </div>
                 </section>
 
@@ -134,50 +139,20 @@
                             <h2><i class="fa-solid fa-sliders"></i> Ambient Sounds</h2>
                         </div>
                         
-                        <audio id="audio-rain" src="https://actions.google.com/sounds/v1/weather/rain_on_roof.ogg" loop preload="none"></audio>
-                        <audio id="audio-storm" src="https://actions.google.com/sounds/v1/weather/thunderstorm.ogg" loop preload="none"></audio>
-                        <audio id="audio-fire" src="https://actions.google.com/sounds/v1/water/fireplace_with_crackle.ogg" loop preload="none"></audio>
-                        <audio id="audio-lofi" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop preload="none"></audio>
+                        <audio id="ambientAudio" loop></audio>
 
                         <div class="sound-list">
-                            <div class="sound-item" data-audio="audio-rain" data-name="Rain">
-                                <div class="sound-info">
-                                    <i class="fa-solid fa-cloud-showers-heavy"></i>
-                                    <span>Rain</span>
+                            <div class="sound-item active" id="scene-sound-control" style="display: none;">
+                                <div class="mini-player-container">
+                                    <video id="mini-video" autoplay muted loop playsinline></video>
+                                    <div class="mini-player-overlay">
+                                        <span id="scene-sound-name">Ambient Sound</span>
+                                    </div>
                                 </div>
                                 <div class="sound-controls">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
-                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
-                                </div>
-                            </div>
-                            <div class="sound-item" data-audio="audio-storm" data-name="Storm">
-                                <div class="sound-info">
-                                    <i class="fa-solid fa-bolt"></i>
-                                    <span>Storm</span>
-                                </div>
-                                <div class="sound-controls">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
-                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
-                                </div>
-                            </div>
-                            <div class="sound-item" data-audio="audio-fire" data-name="Fireplace">
-                                <div class="sound-info">
-                                    <i class="fa-solid fa-fire"></i>
-                                    <span>Fireplace</span>
-                                </div>
-                                <div class="sound-controls">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
-                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
-                                </div>
-                            </div>
-                            <div class="sound-item" data-audio="audio-lofi" data-name="LoFi">
-                                <div class="sound-info">
-                                    <i class="fa-solid fa-headphones"></i>
-                                    <span>LoFi</span>
-                                </div>
-                                <div class="sound-controls">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
-                                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                                    <button id="scene-play-btn" class="play-btn" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                                    <input type="range" id="scene-volume" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                    <button id="enter-fullscreen-btn-2" class="play-btn" title="Enter Fullscreen Mode"><i class="fa-solid fa-expand"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -261,10 +236,31 @@
                             <p>Toggle day/night</p>
                         </div>
                     </button>
+                    <button class="action-btn" id="enter-fullscreen-btn">
+                        <div class="action-icon"><i class="fa-solid fa-expand"></i></div>
+                        <div class="action-text">
+                            <h4>Enter Fullscreen</h4>
+                            <p>Immersive Mode</p>
+                        </div>
+                    </button>
                 </div>
             </section>
         </aside>
 
+    </div>
+
+    <!-- Immersive Mode UI -->
+    <div class="immersive-ui" id="immersive-ui">
+        <div class="immersive-top-right">
+            <span id="immersive-room-name">Rain Room</span>
+        </div>
+        <div class="immersive-bottom-center glass">
+            <button class="play-btn" id="immersive-play-btn"><i class="fa-solid fa-pause"></i></button>
+            <input type="range" class="volume-slider" id="immersive-volume" min="0" max="1" step="0.05" value="0.5">
+            <button class="exit-btn" id="exit-fullscreen-btn" title="Exit Fullscreen">
+                <i class="fa-solid fa-compress"></i>
+            </button>
+        </div>
     </div>
 
     <script src="room.js"></script>

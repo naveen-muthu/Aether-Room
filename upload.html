@@ -3,62 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether Room - Media Upload</title>
+    <title>Upload Your Relaxation - Aether Room</title>
     <link rel="stylesheet" href="upload.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo"><strong>Aether Room</strong></div>
+
+    <!-- Background Layer -->
+    <div class="background" id="main-bg"></div>
+    <video id="bgVideo" autoplay muted loop playsinline></video>
+    <div class="overlay" id="main-overlay"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Top Navbar -->
+    <nav class="navbar glass">
+        <div class="logo">
+            <i class="fa-solid fa-infinity"></i> Aether Room
+        </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="scenes.html">Scenes</a>
-            <a href="room.html">Room</a>
-            <a href="upload.html" class="active">Upload</a>
-            <a href="chat.html">Chat</a>
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="room.html"><i class="fa-solid fa-door-open"></i> Room</a>
+            <a href="scenes.html"><i class="fa-solid fa-image"></i> Scenes</a>
+            <a href="upload.html" class="active"><i class="fa-solid fa-upload"></i> Upload</a>
         </div>
     </nav>
 
-    <main class="upload-container">
-        <div class="upload-card">
-            
-            <!-- Phase 1: Upload Interface -->
-            <div id="upload-phase">
-                <h2>Customize Your Space</h2>
-                <p class="subtitle">Upload custom media for your room</p>
+    <!-- Main Content -->
+    <div class="main-container">
+        
+        <section class="hero-section glass">
+            <div class="hero-content">
+                <h1 class="hero-title">Upload Your Peaceful Moments</h1>
+                <p class="hero-subtitle">Share your own relaxing videos and sounds with the Aether Room community.</p>
+            </div>
+            <div class="ambient-glow"></div>
+        </section>
 
-                <div class="drop-zone" id="drop-zone">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    <h3>Drag & Drop media here</h3>
-                    <p>or click to browse</p>
-                    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">Supports JPG, PNG, GIF, MP4, WebM</p>
+        <div class="content-grid">
+            
+            <div class="left-col">
+                <div class="upload-card glass">
+                    <div class="drop-zone" id="drop-zone">
+                        <div class="upload-icon-container">
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        </div>
+                        <h3>Drag & Drop Video</h3>
+                        <p>or <span class="browse-text">Click to Browse</span></p>
+                        <div class="accepted-files">
+                            <span class="file-badge">MP4</span>
+                            <span class="file-badge">MP3</span>
+                            <span class="file-badge">JPG</span>
+                            <span class="file-badge">PNG</span>
+                        </div>
+                        <input type="file" id="file-input" accept="video/mp4,audio/mp3,audio/mpeg,image/jpeg,image/png" hidden>
+                    </div>
+
+                    <div class="preview-section" id="preview-section" style="display: none;">
+                        <h3>Preview</h3>
+                        <div class="media-preview-container" id="media-preview-container">
+                            <!-- Preview injected here -->
+                        </div>
+                        <div class="file-name-display" id="file-name-display">filename.mp4</div>
+                    </div>
+
+                    <div class="upload-actions">
+                        <button class="btn btn-secondary" id="btn-clear"><i class="fa-solid fa-trash"></i> Clear</button>
+                        <button class="btn btn-primary" id="btn-upload"><i class="fa-solid fa-paper-plane"></i> Upload</button>
+                    </div>
                 </div>
-                <input type="file" id="file-input" accept="image/*,video/*">
             </div>
 
-            <!-- Phase 2: Preview Interface -->
-            <div class="preview-section" id="preview-phase">
-                <h2>Preview Media</h2>
-                
-                <div class="media-container" id="media-container">
-                    <!-- Image or Video tag will be injected here via JS -->
-                </div>
-
-                <div class="file-info" id="file-info">
-                    <i class="fa-solid fa-file"></i>
-                    <span id="file-name">filename.jpg</span>
-                </div>
-
-                <div class="actions">
-                    <button class="btn btn-secondary" id="btn-cancel">Cancel</button>
-                    <button class="btn btn-primary" id="btn-apply">Apply to Room</button>
+            <div class="right-col">
+                <div class="tips-card glass">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-lightbulb"></i> Upload Tips</h2>
+                    </div>
+                    <ul class="tips-list">
+                        <li><i class="fa-solid fa-check text-accent"></i> Keep videos under 100MB</li>
+                        <li><i class="fa-solid fa-check text-accent"></i> MP4 recommended</li>
+                        <li><i class="fa-solid fa-check text-accent"></i> Landscape videos look best</li>
+                        <li><i class="fa-solid fa-check text-accent"></i> High quality ambient sounds</li>
+                    </ul>
                 </div>
             </div>
 
         </div>
-    </main>
 
-    <!-- Status Toast for feedback -->
+        <section class="recent-uploads glass">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Recently Uploaded</h2>
+            </div>
+            <div class="recent-grid">
+                
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-image: url('corridor.jpeg')">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Rainy Kyoto</h4>
+                        <span class="date">Today, 10:30 AM</span>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-color: #1a1a2e">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Deep Space Ambient</h4>
+                        <span class="date">Yesterday, 8:15 PM</span>
+                    </div>
+                </div>
+
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-color: #0f3460">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Ocean Waves</h4>
+                        <span class="date">Yesterday, 2:45 PM</span>
+                    </div>
+                </div>
+
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-color: #16213e">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Cozy Fireplace</h4>
+                        <span class="date">Oct 24, 6:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-color: #221f2e">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Midnight Train</h4>
+                        <span class="date">Oct 23, 11:20 PM</span>
+                    </div>
+                </div>
+
+                <div class="recent-card">
+                    <div class="recent-thumb" style="background-color: #111">
+                        <button class="play-btn-small"><i class="fa-solid fa-play"></i></button>
+                    </div>
+                    <div class="recent-info">
+                        <h4>Library Ambience</h4>
+                        <span class="date">Oct 22, 9:10 AM</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>Aether Room &bull; Relax &bull; Focus &bull; Dream</p>
+    </footer>
+
+    <!-- Toast -->
     <div class="status-toast" id="toast"></div>
 
     <script src="upload.js"></script>

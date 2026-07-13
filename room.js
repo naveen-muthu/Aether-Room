@@ -44,119 +44,136 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Scene Switching ---
+    // --- 3. Scene Architecture ---
+    const scenes = {
+        rain: {
+            video: "video/rainroom1.mp4",
+            audio: "audio/rainroom1audio.mp3",
+            title: "Rain Room",
+            sound: "Rain Ambience"
+        },
+        train: {
+            video: "video/endlesstrainroom1.mp4",
+            audio: "audio/endlesstrainroom1audio.mp3",
+            title: "Endless Train",
+            sound: "Train Ambience"
+        },
+        fire: {
+            video: "video/fireplaceroom1.mp4",
+            audio: "audio/fireplaceroom1audio.mp3",
+            title: "Fireplace Room",
+            sound: "Fireplace Crackle"
+        },
+        natural: {
+            video: "video/naturalroom1.mp4",
+            audio: "audio/naturalroom1audio.mp3",
+            title: "Natural Room",
+            sound: "Nature Ambience"
+        }
+    };
+
     const sceneCards = document.querySelectorAll('.scene-card');
-    const mainBg = document.getElementById('main-bg');
+    const bgVideo = document.getElementById('bgVideo');
+    const ambientAudio = document.getElementById('ambientAudio');
     const statScene = document.getElementById('stat-scene');
+    const statSound = document.getElementById('stat-sound');
+    
+    // Scene Audio Controls
+    const sceneSoundControl = document.getElementById('scene-sound-control');
+    const sceneSoundName = document.getElementById('scene-sound-name');
+    const sceneVolumeSlider = document.getElementById('scene-volume');
+    const scenePlayBtn = document.getElementById('scene-play-btn');
+    const scenePlayIcon = scenePlayBtn ? scenePlayBtn.querySelector('i') : null;
+    const miniVideo = document.getElementById('mini-video');
+
+    // Immersive Mode Elements Sync
+    const immersiveRoomName = document.getElementById('immersive-room-name');
+    const immersivePlayBtn = document.getElementById('immersive-play-btn');
+    const immersivePlayIcon = immersivePlayBtn ? immersivePlayBtn.querySelector('i') : null;
+    const immersiveVolume = document.getElementById('immersive-volume');
 
     sceneCards.forEach(card => {
         card.addEventListener('click', () => {
+            const sceneId = card.getAttribute('data-scene');
+            const sceneData = scenes[sceneId];
+
+            if (!sceneData) return; // Only process if we have data for this scene
+
             // Remove active from all
             sceneCards.forEach(c => c.classList.remove('active'));
             // Add active to clicked
             card.classList.add('active');
 
-            // Update Background (currently uses roombg.png for all as per constraints, 
-            // but structure allows for specific images)
-            const bgImage = card.getAttribute('data-bg');
-            if(mainBg) {
-                // To simulate changing background, we reset animation
-                mainBg.style.filter = 'blur(10px)';
+            // Fade Transition for Video
+            if (bgVideo) {
+                bgVideo.style.opacity = '0';
                 setTimeout(() => {
-                    mainBg.style.backgroundImage = `url('${bgImage}')`;
-                    mainBg.style.filter = 'blur(0px)';
-                }, 300);
+                    bgVideo.src = sceneData.video;
+                    bgVideo.style.opacity = '1';
+                }, 500);
             }
-
-            // Update Status Card
-            const sceneName = card.querySelector('h3').textContent;
-            if(statScene) statScene.textContent = sceneName;
-        });
-    });
-
-    // --- 4. Ambient Audio ---
-    const soundItems = document.querySelectorAll(".sound-item");
-    const statSound = document.getElementById('stat-sound');
-    let currentAudioId = null;
-
-    soundItems.forEach(item => {
-        const audioId = item.getAttribute('data-audio');
-        const audioEl = document.getElementById(audioId);
-        const playBtn = item.querySelector('.play-btn');
-        const playIcon = playBtn.querySelector('i');
-        const slider = item.querySelector('.volume-slider');
-        const soundName = item.getAttribute('data-name');
-
-        if(audioEl && slider) {
-            audioEl.volume = slider.value;
-        }
-
-        if(slider) {
-            slider.addEventListener('input', (e) => {
-                e.stopPropagation();
-                if(audioEl) audioEl.volume = e.target.value;
-            });
-        }
-
-        item.addEventListener("click", (e) => {
-            // Prevent triggering if clicked directly on slider
-            if(e.target.classList.contains('volume-slider')) return;
             
-            if(!audioEl) return;
-
-            const isPlaying = !audioEl.paused;
-
-            if(isPlaying) {
-                fadeOutAndPause(audioEl);
-                item.classList.remove('active');
-                playIcon.className = 'fa-solid fa-play';
-                if(currentAudioId === audioId) {
-                    currentAudioId = null;
-                    if(statSound) statSound.textContent = 'None';
-                }
-            } else {
-                // Pause others
-                if(currentAudioId && currentAudioId !== audioId) {
-                    const prevAudio = document.getElementById(currentAudioId);
-                    const prevItem = document.querySelector(`.sound-item[data-audio="${currentAudioId}"]`);
-                    if(prevAudio) fadeOutAndPause(prevAudio);
-                    if(prevItem) {
-                        prevItem.classList.remove('active');
-                        prevItem.querySelector('.play-btn i').className = 'fa-solid fa-play';
-                    }
-                }
-
-                audioEl.volume = slider.value;
-                audioEl.play().catch(e => console.log('Audio play failed:', e));
-                item.classList.add('active');
-                playIcon.className = 'fa-solid fa-pause';
-                currentAudioId = audioId;
-                
-                if(statSound) statSound.textContent = soundName;
+            // Update Mini Player Video
+            if (miniVideo) {
+                miniVideo.src = sceneData.video;
             }
+
+            // Update Audio Source and Autoplay
+            if (ambientAudio) {
+                ambientAudio.src = sceneData.audio;
+                ambientAudio.volume = sceneVolumeSlider ? sceneVolumeSlider.value : 0.5;
+                ambientAudio.play().catch(e => console.log('Audio autoplay prevented:', e));
+                
+                // Show controls and set to active/playing state
+                if (scenePlayIcon) {
+                    scenePlayIcon.className = 'fa-solid fa-pause';
+                }
+                if (immersivePlayIcon) {
+                    immersivePlayIcon.className = 'fa-solid fa-pause';
+                }
+                if (sceneSoundControl) {
+                    sceneSoundControl.style.display = 'flex';
+                    // Trigger reflow to ensure transition works if needed
+                    void sceneSoundControl.offsetWidth;
+                    sceneSoundControl.classList.add('active');
+                }
+            }
+
+            // Update Status Panel
+            if (statScene) statScene.textContent = sceneData.title;
+            if (statSound) statSound.textContent = sceneData.sound;
+            if (sceneSoundName) sceneSoundName.textContent = sceneData.sound;
+            if (immersiveRoomName) immersiveRoomName.textContent = sceneData.title;
         });
-        
-        if(playBtn) {
-            playBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                item.click();
-            });
-        }
     });
 
-    function fadeOutAndPause(audioElement) {
-        let vol = audioElement.volume;
-        const fadeInterval = setInterval(() => {
-            if (vol > 0.05) {
-                vol -= 0.05;
-                audioElement.volume = vol;
+    // --- 4. Ambient Audio Controls ---
+    if (ambientAudio && sceneVolumeSlider) {
+        ambientAudio.volume = sceneVolumeSlider.value;
+
+        sceneVolumeSlider.addEventListener('input', (e) => {
+            ambientAudio.volume = e.target.value;
+            if (immersiveVolume) immersiveVolume.value = e.target.value;
+        });
+    }
+
+    if (scenePlayBtn && ambientAudio) {
+        scenePlayBtn.addEventListener("click", () => {
+            const isPlaying = !ambientAudio.paused;
+
+            if (isPlaying) {
+                ambientAudio.pause();
+                if (sceneSoundControl) sceneSoundControl.classList.remove('active');
+                if (scenePlayIcon) scenePlayIcon.className = 'fa-solid fa-play';
+                if (immersivePlayIcon) immersivePlayIcon.className = 'fa-solid fa-play';
             } else {
-                clearInterval(fadeInterval);
-                audioElement.pause();
-                const slider = document.querySelector(`.sound-item[data-audio="${audioElement.id}"] .volume-slider`);
-                if(slider) audioElement.volume = slider.value;
+                ambientAudio.volume = sceneVolumeSlider.value;
+                ambientAudio.play().catch(e => console.log('Audio play failed:', e));
+                if (sceneSoundControl) sceneSoundControl.classList.add('active');
+                if (scenePlayIcon) scenePlayIcon.className = 'fa-solid fa-pause';
+                if (immersivePlayIcon) immersivePlayIcon.className = 'fa-solid fa-pause';
             }
-        }, 50);
+        });
     }
 
     // --- 5. Focus Timer (Pomodoro) ---
@@ -258,6 +275,89 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     createParticles();
+
+    // --- 7. Immersive Mode Logic ---
+    const enterFullscreenBtn = document.getElementById('enter-fullscreen-btn');
+    const enterFullscreenBtn2 = document.getElementById('enter-fullscreen-btn-2');
+    const exitFullscreenBtn = document.getElementById('exit-fullscreen-btn');
+
+    function toggleFullscreen() {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            }
+            document.body.classList.add('immersive-mode');
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            document.body.classList.remove('immersive-mode');
+        }
+    }
+
+    if (enterFullscreenBtn) {
+        enterFullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
+    if (enterFullscreenBtn2) {
+        enterFullscreenBtn2.addEventListener('click', toggleFullscreen);
+    }
+    
+    if (exitFullscreenBtn) {
+        exitFullscreenBtn.addEventListener('click', () => {
+             if (document.fullscreenElement || document.webkitFullscreenElement) {
+                 if (document.exitFullscreen) {
+                     document.exitFullscreen();
+                 } else if (document.webkitExitFullscreen) {
+                     document.webkitExitFullscreen();
+                 }
+             }
+             document.body.classList.remove('immersive-mode');
+        });
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            document.body.classList.remove('immersive-mode');
+        } else {
+            document.body.classList.add('immersive-mode');
+        }
+    });
+
+    document.addEventListener('webkitfullscreenchange', () => {
+        if (!document.webkitFullscreenElement) {
+            document.body.classList.remove('immersive-mode');
+        } else {
+            document.body.classList.add('immersive-mode');
+        }
+    });
+
+    // Sync Immersive UI Audio Controls
+    if (immersiveVolume && ambientAudio) {
+        immersiveVolume.addEventListener('input', (e) => {
+            ambientAudio.volume = e.target.value;
+            if (sceneVolumeSlider) sceneVolumeSlider.value = e.target.value;
+        });
+    }
+    if (immersivePlayBtn && ambientAudio) {
+        immersivePlayBtn.addEventListener('click', () => {
+            if (ambientAudio.paused) {
+                ambientAudio.play();
+                if (immersivePlayIcon) immersivePlayIcon.className = 'fa-solid fa-pause';
+                if (scenePlayIcon) scenePlayIcon.className = 'fa-solid fa-pause';
+            } else {
+                ambientAudio.pause();
+                if (immersivePlayIcon) immersivePlayIcon.className = 'fa-solid fa-play';
+                if (scenePlayIcon) scenePlayIcon.className = 'fa-solid fa-play';
+            }
+        });
+    }
 
     console.log("Infinity Room Dashboard initialized successfully.");
 });
